@@ -4,12 +4,15 @@
     display: flex;
     border-radius: 15px;
     overflow: hidden;
+    border: 1px solid rgb(163, 163, 163);
+    cursor: pointer;
 }
 
 .left{
     width: 20%;
     height: 100%;
-    background: antiquewhite;
+    border-right: 15px;
+    overflow: hidden;
 }
 
 .left img{
@@ -18,16 +21,18 @@
     object-fit: cover;
 }
 .right{
+    padding:0 15px;
     width: 80%;
     height: 100%;
-    background: lightskyblue;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
+.right:hover{
+ background: rgb(216, 216, 216);
+}
 .ratePrice{
-    background: lightgreen;
     display: flex;
     align-items: center;
     justify-content: space-between;
