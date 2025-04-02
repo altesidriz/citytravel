@@ -1,0 +1,23 @@
+.container{
+    width: 100vw;
+    height: auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.listContainer{
+    /* background: #8a8a8a; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hotelsList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    /* background: #3b3b3b; */
+    width: 80%;
+}

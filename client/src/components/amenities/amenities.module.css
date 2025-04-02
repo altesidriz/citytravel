@@ -1,0 +1,9 @@
+/* components/amenities/amenities.module.css */
+.container {
+    margin-bottom: 20px;
+  }
+  
+  .amenityLabel {
+    display: block;
+    margin-bottom: 5px;
+  }

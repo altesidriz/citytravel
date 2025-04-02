@@ -1,0 +1,170 @@
+.container{
+    width: 100%;
+    height: 15rem;
+    border: 1px solid #bfbebe;
+    border-radius: 25px;
+}
+
+.upper{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    border-bottom: 1px solid #bfbebe;
+}
+
+.upper ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.upper li{
+    list-style: none;
+    padding: 1rem;
+}
+
+.upper li:hover {
+    border-bottom: 1px solid blue;
+    cursor: pointer;
+}
+
+.bottom{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.component{
+    border: 1px solid #bfbebe;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 15px;
+    width: 28%;
+    height: 30%;
+    cursor: pointer;
+    position: relative;
+}
+
+.component:hover{
+    background: #e2e2e2;
+    color: #000000a0;
+}
+
+.component p{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.input span:nth-child(1){
+font-size: 0.7rem;
+}
+
+.bottom button{
+    background: #194377;
+    color: #ffffff;
+    border: none;
+    padding: 1rem;
+    border-radius: 25px;
+}
+
+.location{
+    margin-top: 0.5rem;
+    position: absolute;
+    width: 100%;
+    height: 10rem;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #bfbebe;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    row-gap: 1rem;
+}
+
+.location input{
+    padding-left: 5px;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.dates {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .travelers {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 250px; /* Adjust width as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .travelers label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .travelers input,
+  .travelers select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .travelers select {
+      appearance: none; /* Remove default select styling */
+      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 8px top 50%;
+      background-size: 16px;
+      padding-right: 30px; /* Make space for the arrow */
+  }
+  
+  .travelers button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .travelers button:hover {
+    background-color: #0056b3;
+  }
+  
+  .travelers > div {
+      margin-bottom: 10px;
+  }
