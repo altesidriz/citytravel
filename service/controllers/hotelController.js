@@ -1,16 +1,64 @@
 import Hotel from "../models/Hotel.js";
+import { verifyToken } from "../utils/verifyToken.js";
 
-//create
 export const createHotel = async (req, res, next) => {
-    const newHotel = new Hotel(req.body)
-
-    try {
+    verifyToken(req, res, async () => {
+      try {
+        const {
+          listedBy,
+          name,
+          type,
+          city,
+          address,
+          description,
+          rating,
+          price,
+          amenities,
+          featured,
+          images,
+          title,
+        } = req.body;
+  
+        
+        const parsedRating = rating === '' ? undefined : Number(rating);
+        const parsedPrice = price === '' ? undefined : Number(price);
+  
+        
+        if (!listedBy || !name || !type || !city || !address || !title || !parsedPrice) {
+          return res.status(400).json({ message: 'Missing required fields' });
+        }
+  
+        const newHotel = new Hotel({
+          listedBy,
+          name,
+          type,
+          city,
+          address,
+          description,
+          rating: parsedRating,
+          price: parsedPrice,
+          amenities,
+          featured,
+          images,
+          title,
+        });
+  
         const savedHotel = await newHotel.save();
-        res.status(200).json(savedHotel);
-    } catch (err) {
-        next(err)
-    }
-};
+  
+        res.status(201).json({
+          message: 'Hotel created successfully',
+          data: savedHotel,
+        });
+      } catch (err) {
+        if (err.name === 'ValidationError') {
+          return res.status(400).json({ message: err.message });
+        } else if (err.code === 11000) {
+          return res.status(409).json({ message: 'Hotel already exists' });
+        }
+        next(err);
+      }
+    });
+  };
 
 //update
 export const updateHotel = async (req, res, next) => {

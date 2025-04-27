@@ -52,7 +52,6 @@ export const deleteRoom = async (req, res, next) => {
 
 //getARoom
 export const getRoomsByHotel = async (req, res, next) => {
-
     try {
         const room = await Room.find({hotelId: req.params.hotelId});
         res.status(200).json(room);

@@ -1,0 +1,90 @@
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .container input,
+  .container select,
+  .container textarea {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .amenities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+    gap: 10px; /* Adds some spacing between columns and rows */
+  }
+  
+  .amenities label {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+  }
+  
+  .amenities label input {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    width: min-content;
+}
+
+.imagePreviewContainer,
+.uploadedImagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.previewImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.successPopup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4BB543; /* nice green */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px);}
+  10% { opacity: 1; transform: translateY(0);}
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px);}
+}

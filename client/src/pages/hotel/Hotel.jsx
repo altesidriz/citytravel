@@ -6,21 +6,30 @@ import Gallery from '../../components/gallery/Gallery';
 const Hotel = () => {
     const { id } = useParams();
     const [hotel, setHotel] = useState(null);
+    const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showGallery, setShowGallery] = useState(false);
 
     useEffect(() => {
-        const fetchHotel = async () => {
+        const fetchHotelAndRooms = async () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`/api/hotels/find/${id}`);
-                if (!response.ok) {
+                const hotelResponse = await fetch(`/api/hotels/find/${id}`);
+                if (!hotelResponse.ok) {
                     throw new Error('Failed to fetch hotel');
                 }
-                const data = await response.json();
-                setHotel(data);
+                const hotelData = await hotelResponse.json();
+                setHotel(hotelData);
+
+                const roomsResponse = await fetch(`/api/rooms/${id}`);
+                if (!roomsResponse.ok) {
+                    throw new Error('Failed to fetch rooms');
+                }
+                const roomsData = await roomsResponse.json();
+                setRooms(roomsData);
+
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -28,16 +37,16 @@ const Hotel = () => {
             }
         };
 
-        fetchHotel();
+        fetchHotelAndRooms();
     }, [id]);
 
     const handleOpenGallery = () => {
         setShowGallery(true);
-      };
-    
-      const handleCloseGallery = () => {
+    };
+
+    const handleCloseGallery = () => {
         setShowGallery(false);
-      };
+    };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -65,7 +74,7 @@ const Hotel = () => {
             <div className={styles.about}>
                 <div className={styles.leftContent}>
                     <h1>{hotel.name}</h1>
-                    <h3><span>{hotel.rating}</span>Wonderful</h3>
+                    <h3><span>{hotel.rating.toFixed(1)}</span>Wonderful</h3>
                     <h3>About this property</h3>
                     <p>{hotel.title}</p>
                     <div className={styles.amenities}>
@@ -79,11 +88,24 @@ const Hotel = () => {
                 </div>
             </div>
             {/* SELECT ROOMS */}
-            <div className={styles.roomsCard}>
+            <div className={styles.roomsContainer}>
+                <h2>Available Rooms</h2>
+                <div className={styles.roomCards}>
+                    {rooms.map((room) => (
+                        <div key={room._id} className={styles.roomCard}>
+                            <h3>{room.type} Room</h3>
+                            <p>Price: ${room.price}</p>
+                            <p>Amenities: {room.amenities.join(', ')}</p>
+                            {room.images.length > 0 && <img src={room.images[0]} alt={`${room.type} Room`} />}
+                            <p>{room.description}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
             {/* QUESTION SECTION */}
-            <div className={styles.question}>
+            <div className={styles.questions}>
                 <h1>Have a question?</h1>
+                <p>Get answers of property information and reviews with in 5 minutes.</p>
                 <textarea name="question" id="question"></textarea>
                 <button>Send</button>
             </div>
