@@ -1,0 +1,24 @@
+.roomCard {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    background: #a15555; /* Keep your background color */
+    /* Remove min-width and flex-shrink */
+  }
+  
+  .roomCard h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .roomCard p {
+    margin-bottom: 8px;
+  }
+  
+  .roomCard img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }

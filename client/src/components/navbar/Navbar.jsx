@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './navbar.module.css';
+import logo from '../../../public/Travelocity-Symbol.png'
 
 import { IoIosArrowDown } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
@@ -26,7 +27,9 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.logo}>
-          <img src="./Travelocity-Symbol.png" alt="" />
+          <Link to='/'>
+          <img src={logo} alt="" />
+          </Link>
         </div>
         <span onClick={() => (setOpen(!open))}>Shop Travel <IoIosArrowDown /></span>
         {open && <div className={styles.dropdown}>

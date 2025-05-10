@@ -1,5 +1,5 @@
 // HotelsList.jsx
-import React, { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import styles from './hotelslist.module.css';
 import Search from '../../components/search/Search';
 import Amenities from '../../components/amenities/Amenities';

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './hotel.module.css';
 import { useParams } from 'react-router-dom';
 import Gallery from '../../components/gallery/Gallery';
+import Rooms from '../rooms/Rooms';
 
 const Hotel = () => {
     const { id } = useParams();
@@ -88,20 +89,7 @@ const Hotel = () => {
                 </div>
             </div>
             {/* SELECT ROOMS */}
-            <div className={styles.roomsContainer}>
-                <h2>Available Rooms</h2>
-                <div className={styles.roomCards}>
-                    {rooms.map((room) => (
-                        <div key={room._id} className={styles.roomCard}>
-                            <h3>{room.type} Room</h3>
-                            <p>Price: ${room.price}</p>
-                            <p>Amenities: {room.amenities.join(', ')}</p>
-                            {room.images.length > 0 && <img src={room.images[0]} alt={`${room.type} Room`} />}
-                            <p>{room.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+           <Rooms rooms={rooms}/>
             {/* QUESTION SECTION */}
             <div className={styles.questions}>
                 <h1>Have a question?</h1>
