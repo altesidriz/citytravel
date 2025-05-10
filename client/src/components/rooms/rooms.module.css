@@ -1,0 +1,14 @@
+.roomsContainer {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .roomCards {
+    display: grid; /* Use CSS Grid for wrapping layout */
+    grid-template-columns: repeat(4, 1fr); /* Each column tries to be at least 25% wide */
+    gap: 10px;
+    margin-top: 15px;
+  }

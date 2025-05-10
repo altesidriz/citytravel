@@ -24,7 +24,7 @@ const Hotel = () => {
                 const hotelData = await hotelResponse.json();
                 setHotel(hotelData);
 
-                const roomsResponse = await fetch(`/api/rooms/${id}`);
+                const roomsResponse = await fetch(`/api/rooms/hotel/${id}`);
                 if (!roomsResponse.ok) {
                     throw new Error('Failed to fetch rooms');
                 }

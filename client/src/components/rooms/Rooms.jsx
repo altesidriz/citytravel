@@ -1,4 +1,4 @@
-import RoomCard from '../../components/rooms/roomCard/RoomCard';
+import RoomCard from './roomCard/RoomCard';
 import styles from './rooms.module.css';
 
 

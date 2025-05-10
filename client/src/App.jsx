@@ -13,6 +13,9 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import { AuthContextProvider } from './context/AuthContext';
 import UploadProperty from './pages/upload/UploadProperty';
+import NotFound from './pages/notFound/NotFound';
+import { Footer } from 'antd/es/layout/layout';
+import Room from './pages/room/Room.';
 
 const App = () => {
   return (
@@ -28,6 +31,8 @@ const App = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
               <Route path="/upload" element={<UploadProperty />} />
+              <Route path="/room/:roomId" element={<Room />} />
+              <Route path="/*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </SearchContextProvider>

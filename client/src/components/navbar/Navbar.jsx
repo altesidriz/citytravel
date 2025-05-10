@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import styles from './navbar.module.css';
-import logo from '../../../public/Travelocity-Symbol.png'
+import logo from '/Travelocity-Symbol.png'
 
 import { IoIosArrowDown } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
@@ -15,6 +15,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openUserMenu, setOpenUserMenu] = useState(false);
   const { user, dispatch } = useContext(AuthContext); // Use dispatch, not logout
   const navigate = useNavigate();
 
@@ -46,17 +47,24 @@ const Navbar = () => {
         <a to='#'>Support</a>
         <a to='#'>Trips</a>
         {user ? (
-          <>
-            <Link to="/upload">List your property</Link>
-            <span>{user.username}</span>
-            <span onClick={handleLogout}>Logout</span>
-          </>
-        ) : (
-          <>
-            <Link to={'/signup'}>Sign up</Link>
-            <Link to={'/login'}>Login</Link>
-          </>
-        )}
+  <div className={styles.userMenu}>
+    <span className={styles.username} onClick={() => setOpenUserMenu(!openUserMenu)}>
+      {user.username} <IoIosArrowDown />
+    </span>
+    {openUserMenu && (
+      <div className={styles.userDropdown}>
+        <Link to="/bookings">My Bookings</Link>
+        <Link to="/properties">My Properties</Link>
+        <span onClick={handleLogout}>Logout</span>
+      </div>
+    )}
+  </div>
+) : (
+  <>
+    <Link to={'/signup'}>Sign up</Link>
+    <Link to={'/login'}>Login</Link>
+  </>
+)}
       </div>
     </div>
   )

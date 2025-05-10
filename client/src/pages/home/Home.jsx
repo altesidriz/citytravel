@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './home.module.css';
 import Search from '../../components/search/Search';
 import Trending from '../../components/trending/Trending';

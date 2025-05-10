@@ -2,10 +2,12 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 15px;
-    background: #a15555; /* Keep your background color */
-    /* Remove min-width and flex-shrink */
   }
   
+  .roomCard:hover{
+    background: #f3f3f5;
+    cursor: pointer;
+  }
   .roomCard h3 {
     margin-top: 0;
     margin-bottom: 10px;

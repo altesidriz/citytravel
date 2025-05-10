@@ -1,8 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './roomCard.module.css';
 
 const RoomCard = ({ room }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = ()=> {
+    navigate(`/room/${room._id}`)
+  }
   return (
-    <div className={styles.roomCard}>
+    <div className={styles.roomCard} onClick={handleNavigate}>
       <h3>{room.type.charAt(0).toUpperCase() + room.type.slice(1)} Room</h3>
       <p>Price: ${room.price}</p>
       <p>Amenities: {room.amenities.join(', ')}</p>
