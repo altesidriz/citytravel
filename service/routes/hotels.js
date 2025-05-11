@@ -9,9 +9,10 @@ import {
     getAllHotelsByLocation,
     getAllHotelsByPrice,
     getHotel,
+    getHotelsByUser,
     updateHotel
 } from '../controllers/hotelController.js';
-import { verifyAdmin } from '../utils/verifyToken.js';
+import { verifyAdmin, verifyToken } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
@@ -25,6 +26,9 @@ router.delete('/:id', verifyAdmin, deleteHotel);
 router.get('/find/:id', getHotel);
 //Get All
 // router.get('/', getAllHotels);
+
+//Get Hotels By User ID
+router.get('/user/:userId', verifyToken, getHotelsByUser);
 
 router.get('/', getAllHotelsByLocation);
 
