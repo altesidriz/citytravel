@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import styles from './search.module.css';
 import { FaLocationDot } from 'react-icons/fa6';
 import { RiCalendarEventFill } from 'react-icons/ri';

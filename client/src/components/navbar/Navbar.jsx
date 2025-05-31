@@ -85,6 +85,7 @@ const Navbar = () => {
               <div className={styles.userDropdown}>
                 <Link to="/bookings">My Bookings</Link>
                 <Link to="/properties">My Properties</Link>
+                <Link to="/upload">List Your Property</Link>
                 <span onClick={handleLogout}>Logout</span>
               </div>
             )}
