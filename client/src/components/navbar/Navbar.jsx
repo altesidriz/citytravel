@@ -2,6 +2,9 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import styles from './navbar.module.css';
 import logo from '/Travelocity-Symbol.png'
 
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoCloseSharp } from "react-icons/io5";
+
 import { IoIosArrowDown } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
 import { BsBuildingsFill } from "react-icons/bs";
@@ -16,6 +19,7 @@ import { AuthContext } from '../../context/AuthContext';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const [responsive, setResponsive] = useState(false);
   const { user, dispatch } = useContext(AuthContext); // Use dispatch, not logout
   const navigate = useNavigate();
   const userMenuRef = useRef(null);
@@ -58,18 +62,18 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.left} ref={shopTravelRef}>
         <div className={styles.logo}>
-          <Link to='/'>
+          <Link to='/' onClick={()=>setResponsive(false)}>
             <img src={logo} alt="" />
           </Link>
         </div>
         <span onClick={() => (setOpen(!open))}>Shop Travel <IoIosArrowDown /></span>
         {open && <div className={styles.dropdown}>
-          <a href='#'><BsBuildingsFill /> Stays</a>
-          <a href='#'><BiSolidPlaneAlt /> Flights</a>
-          <a href='#'><FaCarAlt /> Cars</a>
-          <a href='#'><GiRollingSuitcase /> Packages</a>
-          <a href='#'><FaTicketAlt /> Things to do</a>
-          <a href='#'> <RiShipLine />Cruises</a>
+          <a href='#' onClick={() => setOpen(false)}><BsBuildingsFill /> Stays</a>
+          <a href='#' onClick={() => setOpen(false)}><BiSolidPlaneAlt /> Flights</a>
+          <a href='#' onClick={() => setOpen(false)}><FaCarAlt /> Cars</a>
+          <a href='#' onClick={() => setOpen(false)}><GiRollingSuitcase /> Packages</a>
+          <a href='#' onClick={() => setOpen(false)}><FaTicketAlt /> Things to do</a>
+          <a href='#' onClick={() => setOpen(false)}> <RiShipLine />Cruises</a>
         </div>}
       </div>
       <div className={styles.right}>
@@ -83,10 +87,10 @@ const Navbar = () => {
             </span>
             {openUserMenu && (
               <div className={styles.userDropdown}>
-                <Link to="/bookings">My Bookings</Link>
-                <Link to="/properties">My Properties</Link>
-                <Link to="/upload">List Your Property</Link>
-                <span onClick={handleLogout}>Logout</span>
+                <Link to="/bookings" onClick={() => setOpenUserMenu(false)}>My Bookings</Link>
+                <Link to="/properties" onClick={() => setOpenUserMenu(false)}>My Properties</Link>
+                <Link to="/upload" onClick={() => setOpenUserMenu(false)}>List Your Property</Link>
+                <span onClick={() => { handleLogout(); setOpenUserMenu(false); }}>Logout</span>
               </div>
             )}
           </div>
@@ -96,6 +100,36 @@ const Navbar = () => {
             <Link to={'/login'}>Login</Link>
           </>
         )}
+      </div>
+      <div className={styles.responsive}>
+        {!responsive ? <RxHamburgerMenu size={40} onClick={() => { setResponsive(!responsive) }} /> :
+          <IoCloseSharp size={40} onClick={() => { setResponsive(!responsive) }} />}
+
+        {responsive ? <div className={styles.resMenu}>
+          <a to='#' onClick={() => setResponsive(false)}><MdFileDownload /> Get the app</a>
+          <a to='#' onClick={() => setResponsive(false)}>Support</a>
+          <a to='#' onClick={() => setResponsive(false)}>Trips</a>
+          {user ? (
+            <div className={styles.userMenu} ref={userMenuRef}>
+              <span className={styles.username} onClick={() => setOpenUserMenu(!openUserMenu)}>
+                {user.username} <IoIosArrowDown />
+              </span>
+              {openUserMenu && (
+                <div className={styles.userDropdown}>
+                  <Link to="/bookings" onClick={() => {setOpenUserMenu(false) ; setResponsive(false)}}>My Bookings</Link>
+                  <Link to="/properties" onClick={() => {setOpenUserMenu(false) ; setResponsive(false)}}>My Properties</Link>
+                  <Link to="/upload" onClick={() => {setOpenUserMenu(false) ; setResponsive(false)}}>List Your Property</Link>
+                  <span onClick={() => { handleLogout(); setOpenUserMenu(false); setResponsive(false) }}>Logout</span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link to={'/signup'} onClick={() => setResponsive(false)}>Sign up</Link>
+              <Link to={'/login'} onClick={() => setResponsive(false)}>Login</Link>
+            </>
+          )}
+        </div> : ""}
       </div>
     </div>
   )
